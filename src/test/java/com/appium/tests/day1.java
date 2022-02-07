@@ -1,9 +1,12 @@
 package com.appium.tests;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -34,6 +37,9 @@ public class day1 {
         //Set your application's Mainactivity i.e. the LAUNCHER activity name.
         desiredCapabilities.setCapability("appActivity","com.android.calculator2.Calculator");
 
+        //Set the automation name
+        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UIAutomator2");
+
         /*"http://localhost:4723/wd/hub --> address of the appium server. If you have appium server on the same computer...
          *just use local host
          * 4723 -> defualt port number
@@ -41,6 +47,30 @@ public class day1 {
          */
         driver = new AppiumDriver<MobileElement>(new URL("http://localhost:4723/wd/hub"),desiredCapabilities);
         Thread.sleep(3000);
+
+        //Test 2+2 is returning 4
+        MobileElement digit2 = driver.findElement(By.id("com.android.calculator2:id/digit_2"));
+        //mobileBy is child class of by
+        MobileElement plus = driver.findElement(MobileBy.AccessibilityId("plus"));
+        MobileElement equals = driver.findElement(MobileBy.AccessibilityId("equals"));
+        MobileElement result = driver.findElement(By.id("com.android.calculator2:id/result"));
+
+        digit2.click();
+        Thread.sleep(1000);
+        plus.click();
+        Thread.sleep(1000);
+        digit2.click();
+        Thread.sleep(1000);
+        equals.click();
+        Thread.sleep(1000);
+
+        //get the text of mobile element of result
+        String resultText = result.getText();
+
+        Assert.assertEquals(Integer.parseInt(resultText),4);
+        Thread.sleep(3000);
+
+        //close the app
         driver.closeApp();
 
 
