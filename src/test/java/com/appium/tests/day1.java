@@ -73,6 +73,8 @@ public class day1 {
         //verify 4 * 5 = 20
         MobileElement digit4 = driver.findElement(By.id("com.android.calculator2:id/digit_4"));
         MobileElement multiplier = driver.findElement(MobileBy.AccessibilityId("multiply"));
+        //exactly same the above one --> findElementByAccessbilityId == findElement(By...)
+        multiplier = driver.findElementByAccessibilityId("multiply");
         MobileElement digit5 = driver.findElement(By.id("com.android.calculator2:id/digit_5"));
         digit4.click();
         Thread.sleep(1000);
