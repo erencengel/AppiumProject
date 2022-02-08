@@ -123,6 +123,22 @@ public class day1 {
         //remote app on the cloud
         desiredCapabilities.setCapability("app","https://cybertek-appium.s3.amazonaws.com/etsy.apk");
         driver = new AppiumDriver<MobileElement>(new URL("http://localhost:4723/wd/hub"),desiredCapabilities);
+        //test
+        MobileElement youButton = driver.findElement(By.xpath("//android.widget.FrameLayout[@content-desc=\"You tab, 4 of 5\"]/android.widget.ImageView"));
+        youButton.click();
+        Thread.sleep(2000);
+        MobileElement settingsButton = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.TextView"));
+        /*
+        //*[@text='Settings'] is an other way to inspect
+         */
+        settingsButton.click();
+        Thread.sleep(2000);
+        MobileElement checkBox = driver.findElement(By.id("com.etsy.android:id/settings_checkbox"));
+        checkBox.click();
+        Thread.sleep(2000);
+        //assert checkbox is not selected
+        Assert.assertTrue(!checkBox.isSelected());
+
         Thread.sleep(3000);
         driver.closeApp();
     }
