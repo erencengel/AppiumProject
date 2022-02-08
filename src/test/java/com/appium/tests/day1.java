@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -88,11 +89,42 @@ public class day1 {
         Assert.assertEquals(Integer.parseInt(resultText),20);
         Thread.sleep(3000);
 
+        //50-35=15
+        getDigit(5).click();
+        getDigit(0).click();
+        MobileElement minus = driver.findElement(MobileBy.AccessibilityId("minus"));
+        minus.click();
+        getDigit(3).click();
+        getDigit(5).click();
+        equals.click();
+        resultText=result.getText();
+        Assert.assertEquals(Integer.parseInt(resultText),15);
+        Thread.sleep(3000);
+
 
         //close the app
         driver.closeApp();
 
+    }
 
+    //CREATE A METHOD THAT İS RETURNİNG MOBİLE ELEMENT OF THE DİGİT THAT YOU PASS A PARAMETER
+    public MobileElement getDigit(int digit){
+        return driver.findElement(By.id("com.android.calculator2:id/digit_" + digit));
+    }
+
+    @Test
+    public void test2() throws MalformedURLException, InterruptedException {
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
+        desiredCapabilities.setCapability(MobileCapabilityType.VERSION,"8.0");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_2");
+        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UIAutomator2");
+        //remote app on the cloud
+        desiredCapabilities.setCapability("app","https://cybertek-appium.s3.amazonaws.com/etsy.apk");
+        driver = new AppiumDriver<MobileElement>(new URL("http://localhost:4723/wd/hub"),desiredCapabilities);
+        Thread.sleep(3000);
+        driver.closeApp();
     }
 
 }
