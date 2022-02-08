@@ -1,0 +1,23 @@
+-> APPIUM is open SOURCE
+-> APPIUM is a server
+-> You can do automation on mobile apps, web apps and desktop apps through Appium.
+-> Java -- Selenium -- Browser
+-> Java -- Appium -- Mobile app
+-> Appium is the middle man in the scenario.
+-> We talk with the Appium to talk with the real device or emulator/simulator. Like an API. (between java,methods and real device/emulator/simulator).
+-> API request.
+-> Appium is taking our API request and send it to app to execute.
+-> Our job is telling Appium to run the mobile apps.
+-> Appium concepts: purely REST API.
+-> Desired Capabilities: are a set of keys and values(like a map) sent to the Appium server to tell the server what kind of automation session we are interested in starting up.
+	ex. Desired Capabilities {
+		platform name: '...',
+		platform version: '...'.
+		...
+	}
+-> Where this server is running? In the nodeJS. What is nodeJS? : It is like an environment as JVM for Java. Appium is using JS nodeJS environment and running and waiting our requests.
+-> appinfo.apk file
+-> İd is not always unique, like name. If you find accessbility id, then it is good to go! It is like "id" in front-end selenium.
+-> Appium Inspector, id is not always unique, accessbilityId is always unique.
+-> Before run a test case, you should always close Appium Inspector. Otherwise Appium Server will listen Appium Inspector, not you(Intellij/Selenium)
+
